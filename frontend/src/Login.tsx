@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const API = import.meta.env.VITE_API_URL;
+
 function Login({
   onLogin,
   onCambiar,
@@ -15,7 +17,7 @@ function Login({
   async function manejarLogin(e: React.FormEvent) {
     e.preventDefault();
     setError(""); // limpiar error previo
-    const res = await fetch("http://localhost:3000/auth/login", {
+    const res = await fetch(`${API}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),

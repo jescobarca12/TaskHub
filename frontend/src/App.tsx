@@ -4,6 +4,9 @@ import type { Lista, Tarea } from "./types";
 import TareaItem from "./TareaItem";
 import ListaItem from "./ListaItem";
 import Registro from "./Registro";
+
+const API = import.meta.env.VITE_API_URL;
+
 function App() {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token"),
@@ -28,7 +31,7 @@ function App() {
   }
   async function crearLista(e: React.FormEvent) {
     e.preventDefault(); // no recargar
-    const res = await fetch("http://localhost:3000/listas", {
+    const res = await fetch(`${API}/listas`, {
       method: "POST", // ← método POST
       headers: {
         "Content-Type": "application/json", // ← avisar que mandamos JSON
@@ -43,7 +46,7 @@ function App() {
   async function crearTarea(e: React.FormEvent) {
     e.preventDefault();
     const res = await fetch(
-      `http://localhost:3000/listas/${listaSeleccionada}/tareas`,
+      `${API}/listas/${listaSeleccionada}/tareas`,
       {
         method: "POST",
         headers: {
@@ -61,7 +64,7 @@ function App() {
     setNuevoTitulo("");
   }
   async function alternarCompletada(tarea: Tarea) {
-    const res = await fetch(`http://localhost:3000/tareas/${tarea.id}`, {
+    const res = await fetch(`${API}/tareas/${tarea.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +76,7 @@ function App() {
     setTareas(tareas.map((t) => (t.id === tarea.id ? actualizada : t)));
   }
   async function borrarTarea(tareaId: number) {
-    await fetch(`http://localhost:3000/tareas/${tareaId}`, {
+    await fetch(`${API}/tareas/${tareaId}`, {
       method: "DELETE",
       headers: { Authorization: "Bearer " + token },
     });
@@ -81,7 +84,7 @@ function App() {
   }
   useEffect(() => {
     if (!token) return;
-    fetch("http://localhost:3000/listas", {
+    fetch(`${API}/listas`, {
       headers: { Authorization: "Bearer " + token },
     })
       .then((res) => {
@@ -99,7 +102,7 @@ function App() {
   useEffect(() => {
     if (!listaSeleccionada || !token) return;
     // construir la URL con el filtro
-    let url = `http://localhost:3000/listas/${listaSeleccionada}/tareas`;
+    let url = `${API}/listas/${listaSeleccionada}/tareas`;
     if (filtro) url += filtro; // ej: "?prioridad=alta"
     fetch(url, { headers: { Authorization: "Bearer " + token } })
       .then((res) => res.json())
