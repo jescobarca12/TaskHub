@@ -14,12 +14,14 @@ app.use(cors({ origin: origenPermitido }));
 
 app.use(express.json()); // ← PRIMERO: prepara req.body para todos
 
-app.use("/auth", authRoutes); // ← luego las rutas
-app.use("/listas", listasRoutes);
-app.use("/", tareasRoutes); // las rutas ya incluyen el path completo
+// Ruta pública: va ANTES de los routers con auth, si no quedaría tapada.
 app.get("/health", (req, res) => {
   res.json({ status: "ok" });
 });
+
+app.use("/auth", authRoutes); // ← luego las rutas
+app.use("/listas", listasRoutes);
+app.use("/", tareasRoutes); // las rutas ya incluyen el path completo
 app.use(errorHandler);
 
 const PORT = Number(process.env.PORT) || 3000;
