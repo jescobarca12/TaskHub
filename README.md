@@ -5,6 +5,16 @@
 Gestor de tareas full-stack estilo Todoist/TickTick. Cada usuario organiza sus
 tareas en listas, con prioridades, fechas límite y filtros.
 
+**🌐 [Probar la demo en vivo](https://task-hub-plum.vercel.app)**
+
+> Nota: el backend usa el plan gratuito de Render y se suspende tras unos minutos
+> de inactividad, por lo que la primera carga puede tardar ~50 segundos en
+> despertar. Después funciona con normalidad.
+
+![TaskHub](docs/captura.png)
+
+![Pantalla de inicio de sesión](docs/login.png)
+
 ## Por qué este proyecto
 
 Quería aprender las cosas desde cero haciéndolas yo mismo, entendiendo el porqué

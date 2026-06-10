@@ -5,6 +5,16 @@
 Full-stack task manager in the style of Todoist/TickTick. Each user organizes
 their tasks into lists, with priorities, due dates and filters.
 
+**🌐 [Try the live demo](https://task-hub-plum.vercel.app)**
+
+> Note: the backend runs on Render's free tier and spins down after a few minutes
+> of inactivity, so the first load may take ~50 seconds to wake up. After that it
+> works normally.
+
+![TaskHub](docs/captura.png)
+
+![Login screen](docs/login.png)
+
 ## Why this project
 
 I wanted to learn everything from scratch by building it myself, understanding
